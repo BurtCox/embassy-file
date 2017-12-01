@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+	id 'io.spring.dependency-management' version '1.0.1.RELEASE'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+jar {
+    baseName = 'embassy-file'
+    version =  '0.1.0'
+}
+
+repositories {
+	mavenLocal()
+    mavenCentral()
+    maven { url "https://nexus-tools.swacorp.com/AIS/content/groups/public/" }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencyManagement {
+	imports {
+		mavenBom 'org.apache.logging.log4j:log4j-bom:2.10.0'
+	}
+}
+
+dependencies {
+	compile("org.apache.logging.log4j:log4j-api")
+	compile("org.apache.logging.log4j:log4j-core")
+	compile("commons-io:commons-io:2.6")    
+}
